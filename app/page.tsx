@@ -7,11 +7,19 @@ import CategoryList from "@/components/category-list";
 import { Suspense } from "react";
 import Skeleton from "@/components/skeleton";
 
+import { PromoBanners } from "@/components/promo-banner";
+import FeaturedCategories from "@/components/feature-categories";
+
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8"> 
     
       <HeroSection />
+
+      <FeaturedCategories 
+       categoryId={process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID!}
+             limit={10}/>
+      <PromoBanners  />
 
       <section className="my-12">
         <div className="flex justify-between items-center mb-6">

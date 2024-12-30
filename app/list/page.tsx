@@ -25,7 +25,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
                     <Button className="rounded-3xl text-white bg-red-300 w-max py-3 px-5 text-sm">Buy Now</Button>
                 </div>
                 <div className="relative w-1/3">
-                    <Image src='/' alt='' fill className='object-contain' />
+                    <Image src='https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt='' fill className='object-contain' />
                 </div>
             </div>
             <div>

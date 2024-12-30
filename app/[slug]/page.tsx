@@ -2,12 +2,17 @@ import Add from "@/components/Add";
 import CustomizeProducts from "@/components/customizedProducts";
 import ProductImages from "@/components/product-gallery";
 import Reviews from "@/components/Reviews";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { wixClientServer } from "@/lib/wixClientServer";
-import { notFound } from "next/navigation";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { notFound, usePathname } from "next/navigation";
 import { Suspense } from "react";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
+
+
 
   const products = await wixClient.products
     .queryProducts()
@@ -21,7 +26,33 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const product = products.items[0];
 
   return (
+    <div className='min-h-screen bg-gray-50/50'>
+
+        <div className="container px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64   py-4">
+                <Breadcrumb>
+                  <BreadcrumbList>
+                    <BreadcrumbItem>
+                      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator>
+                      <ChevronRight className="h-4 w-4" />
+                    </BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                      <BreadcrumbLink href="/list">Shop</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator>
+                      <ChevronRight className="h-4 w-4" />
+                    </BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                      <BreadcrumbPage>{product.name}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                  </BreadcrumbList>
+                </Breadcrumb>
+              </div>
+
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative flex flex-col lg:flex-row gap-16">
+       
+  
       {/* IMG */}
       <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
         <ProductImages items={product.media?.items} />
@@ -71,6 +102,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           <Reviews productId={product._id!} />
         </Suspense> */}
       </div>
+    </div>
     </div>
   );
 };
