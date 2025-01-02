@@ -21,7 +21,7 @@ export function Header() {
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2 text-xl font-bold">
             <ShoppingCart className="h-6 w-6 text-green-500" />
-            FreshCart
+            ETShop
           </Link>
           
           <div className="hidden md:flex flex-1 max-w-xl relative">

@@ -7,6 +7,7 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import { useCartStore } from "@/hooks/useCartStore";
 
 const CheckoutPage = ({ amount }: { amount: number }) => {
   const stripe = useStripe();
@@ -14,6 +15,9 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
+
+   
+    const {reset} = useCartStore() 
 
   useEffect(() => {
     fetch("/api/create-payment-intent", {
@@ -46,6 +50,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
+       
       confirmParams: {
         return_url: `http://www.localhost:3000/pay/success?amount=${amount}`,
       },
@@ -57,7 +62,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       setErrorMessage(error.message);
     } else {
       // The payment UI automatically closes with a success animation.
-      // Your customer is redirected to your `return_url`.
+      reset(); // Reset the cart state
     }
 
     setLoading(false);

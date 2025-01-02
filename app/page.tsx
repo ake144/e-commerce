@@ -15,54 +15,42 @@ export default function Home() {
     <div className="container mx-auto px-4 py-8"> 
     
       <HeroSection />
-
-      <FeaturedCategories 
-       categoryId={process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID!}
-             limit={10}/>
+          <Suspense fallback={<Skeleton />}>
+             <FeaturedCategories 
+              categoryId={process.env.ALL_PRODUCTS_CATEGORY_ID!}
+               limit={18}/>
+          </Suspense>
       <PromoBanners  />
+
 
       <section className="my-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Popular Products</h2>
           <Button variant="link">View All</Button>
         </div>
+        <Suspense fallback={<Skeleton />}>
           <ProductCard
-
-           categoryId={process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID!}
-             limit={5}
-            // title="Organic Bananas"
-            // price={4.99}
-            // image="https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=300"
-            // category="Fruits"
-            // rating={4.5}
+           categoryId={process.env.ALL_PRODUCTS_CATEGORY_ID!}
+             limit={15}
           />
-         
-
+          </Suspense>
       </section>
 
-            <section className="my-12">
-              <h1 className="text-2xl px-4 md:px-8 lg:px-16 xl:32 mb-12 ">Categories</h1>
+          <section className="my-12">
+              <h1 className="text-2xl  font-bold px-4 md:px-8 lg:px-16 xl:32 mb-12 ">Categories</h1>
              <Suspense fallback={<Skeleton />}>
                 <CategoryList />
               </Suspense>
-            </section>
+          </section>
 
       <section className="my-12">
         <h1 className="text-2xl font-bold mb-6">Featured Categories</h1>
         <Suspense fallback={<Skeleton />}>
           <CategoryCard
-            categoryId={process.env.FEATURED_PRODUCTS_FEATURED_CATEGORY_ID!}
+            categoryId={process.env.FEATURED_CATEGORY_ID!}
             limit={4}
-            // title="Fruits & Vegetables"
-            // image="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=300"
-            // href="/categories/fruits-vegetables"
-          />
+            />
           </Suspense>
-          {/* <CategoryCard
-            title="Dairy & Eggs"
-            image="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300"
-            href="/categories/dairy-eggs"
-          /> */}
       </section>
 
       <section className="my-12">
