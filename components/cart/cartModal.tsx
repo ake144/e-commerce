@@ -6,15 +6,45 @@ import { media as wixMedia } from "@wix/sdk";
 import { useWixClient } from "@/hooks/useWixClient";
 import { useRouter } from "next/navigation";
 
+interface Subtotal {
+  amount: string;
+  convertedAmount: string;
+  formattedAmount: string;
+  formattedConvertedAmount: string;
+}
+
+interface CartItem {
+  _id: string;
+  image?: string;
+  productName?: {
+    original: string;
+  };
+  quantity?: number;
+  price?: {
+    amount: string;
+  };
+  availability?: {
+    status: string;
+  };
+}
+
+interface Cart {
+  lineItems: Array<CartItem>;
+  subtotal?: Subtotal; // Optional
+}
+
+
 const CartModal = () => {
   // TEMPORARY
   // const cartItems = true;
 
   const wixClient = useWixClient();
-  const { cart, isLoading, removeItem } = useCartStore();
+  const { cart, isLoading, removeItem } = useCartStore() as { cart: Cart; isLoading: boolean; removeItem: (client: any, id: string) => void };
   const router = useRouter();  
 
   console.log(cart);
+  
+  
   const checkoutUrl = `/pay?amount=${cart?.subtotal?.amount}`;
 
 
@@ -98,7 +128,7 @@ const CartModal = () => {
           <div className="">
             <div className="flex items-center justify-between font-semibold">
               <span className="">Subtotal</span>
-              <span className="">${cart.subtotal.amount}</span> 
+              <span className="">${cart?.subtotal?.amount}</span> 
             </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
               Shipping and taxes calculated at checkout.

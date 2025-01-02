@@ -5,6 +5,7 @@ import convertToSubcurrency from "@/lib/convertToSubcurrency";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
@@ -15,9 +16,10 @@ export default function PaymentPage() {
     const searchParams = useSearchParams();
     const amount = parseInt(searchParams.get('amount') || '0')
 
-    
+  
 
   return (
+     <Suspense>
     <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
       <div className="mb-10">
         <h1 className="text-4xl font-extrabold mb-2">Sonny</h1>
@@ -38,5 +40,6 @@ export default function PaymentPage() {
         <CheckoutPage amount={amount} />
       </Elements>
     </main>
+    </Suspense>
   );
 }
