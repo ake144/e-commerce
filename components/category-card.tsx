@@ -95,7 +95,7 @@ export async  function CategoryCard({
             }}
           ></div>
         )}
-        <button className="rounded-2xl ring-1 ring-lama text-lama w-max py-2 px-4 text-xs hover:bg-lama hover:text-white">
+        <button className="rounded-2xl ring-1 ring-pink-400 text-pink-500 w-max py-2 px-4 text-xs hover:bg-pink-600 hover:text-white">
           Add to Cart
         </button>
       </Link>
