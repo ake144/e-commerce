@@ -1,11 +1,9 @@
 import Add from "@/components/Add";
 import CustomizeProducts from "@/components/customizedProducts";
 import ProductImages from "@/components/product-gallery";
-import Reviews from "@/components/Reviews";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { notFound, usePathname } from "next/navigation";
 import { Suspense } from "react";
 
@@ -96,12 +94,9 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
           </div>
         ))}
         <div className="h-[2px] bg-gray-100" />
-        {/* REVIEWS */}
-        <h1 className="text-2xl">User Reviews</h1>
-        {/* <Suspense fallback="Loading...">
-          <Reviews productId={product._id!} />
-        </Suspense> */}
-      </div>
+
+      </div> 
+
     </div>
     </div>
   );

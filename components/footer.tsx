@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-semibold text-lg mb-4">About FreshCart</h3>
+            <h3 className="font-semibold text-lg mb-4">About ETShop</h3>
             <p className="text-muted-foreground">
               Your one-stop shop for fresh groceries and daily essentials delivered right to your doorstep.
             </p>
@@ -50,7 +50,7 @@ export function Footer() {
         </div>
         
         <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} FreshCart. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ETShop. All rights reserved.</p>
         </div>
       </div>
     </footer>
